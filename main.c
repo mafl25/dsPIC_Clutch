@@ -114,15 +114,27 @@ void ADC_init(void);
 
 #define STEPPER_REG_UPDATE(A)   LATB = (LATB & 0xFFC3) | ((A) << 2)
 
-static volatile uint8_t current_state;
-static volatile uint8_t output_value[8] = {0x01, 0x03, 0x02, 0x06,
-                                  0x04, 0x0C, 0x08, 0x09};
+static volatile bool continuos_steps; 
+static volatile bool stepper_direction;
+static volatile uint16_t step_count;
+static volatile uint16_t stepper_interval;
+static volatile uint8_t current_stepper_state;
+static volatile uint8_t output_stepper_value[8] = {0x01, 0x03, 0x02, 0x06,
+                                                   0x04, 0x0C, 0x08, 0x09};
 
 void stepper_setup(void);
 void step_forward(void);
 void step_backward(void);
 
+
+static volatile bool send_status;
+#define MAX_STEPS       1000
+static volatile int16_t stepper_position;
+
+
 volatile uint16_t set_point;
+
+
 
 #define TIMEOUT         312
 #define SEND_DELAY      14
@@ -149,6 +161,15 @@ int main(void) {
     init_timer_interrupt(TIMER3, 1);
     
     stepper_setup();
+    stepper_interval = 50;
+    TRISBbits.TRISB8 = 1;
+    
+    while(!PORTBbits.RB8) {
+        step_backward();
+        stepper_position = 0;
+        __delay_ms(5);
+    }
+        
     
     uint16_t received_value = 0;
     
@@ -156,6 +177,10 @@ int main(void) {
 
     struct circular_buffer _receive = {0, 0, {0}};
     struct circular_buffer *receive = &_receive;
+    
+    struct circular_buffer _send = {0, 0, {0}};
+    struct circular_buffer *send = &_send;
+    
     while(1) {
         
         espi1_master_receive(receive, TIMER1, TIMEOUT, SEND_DELAY);
@@ -175,10 +200,33 @@ int main(void) {
                     byte_1 = buffer_pop(receive);
                     byte_2 = buffer_pop(receive);
                     break;
+                case 0xBA:
+                    stepper_direction = buffer_pop(receive);
+                    step_count = buffer_pop(receive);
+                    continuos_steps = false;
+                    break;
+                case 0xBB:
+                    stepper_direction = buffer_pop(receive);
+                    buffer_pop(receive);
+                    step_count = 0;
+                    continuos_steps = true;
+                    break;
+                case 0xBC:
+                    byte_1 = buffer_pop(receive);
+                    byte_2 = buffer_pop(receive);
+                    stepper_interval = (byte_1 << 8 | byte_2);
             }    
         }
             
-//        espi1_master_send(receive, TIMER1, TIMEOUT, SEND_DELAY);
+        if (send_status) {
+            buffer_push(send, 0x55);
+            buffer_push(send, 0xDD);
+            buffer_push(send, 0x00);
+            send_status = false;
+        }
+        
+
+        espi1_master_send(send, TIMER1, TIMEOUT, SEND_DELAY);
     }
     
     return (0);
@@ -186,6 +234,7 @@ int main(void) {
 
 void __attribute__((__interrupt__, __no_auto_psv__)) _T3Interrupt(void)
 {
+    clear_timer_interrupt(TIMER3);
     /*float set = set_point / 1023.0;
     float adc_value = read_adc_ch0() / 1023.0;
     float result = proportional(set,  adc_value, 5.0);
@@ -196,14 +245,41 @@ void __attribute__((__interrupt__, __no_auto_psv__)) _T3Interrupt(void)
     
     result *= 1023;
     set_value_motor((int16_t)result);*/
-    static int count = 0;
-    if (count == 50) {
-        count = 0;
-        step_forward();
-    } else {
-        count++;
+    static uint16_t stepper_interval_count = 1;
+    if (stepper_interval_count >= stepper_interval) {
+        if (step_count || continuos_steps) {
+            if (stepper_direction) {
+                if (stepper_position <= MAX_STEPS) {
+                    step_forward();
+                    if (!PORTBbits.RB8)
+                        stepper_position++;
+                } else {
+                    continuos_steps = false;
+                    step_count = 0;
+                }
+            } else if (!PORTBbits.RB8) {
+                step_backward();
+                stepper_position--;
+            } else  {
+                continuos_steps = false;
+                step_count = 0;
+                stepper_position = 0;
+            }
+            
+            if (step_count)
+                step_count--;
+        }
+        stepper_interval_count = 0;
     }
-    clear_timer_interrupt(TIMER3);
+    stepper_interval_count++;
+    
+    static uint16_t status_count = 1; 
+    if (status_count == 40) {
+        send_status = true;
+        status_count = 0;
+    }
+    status_count++;
+    
 }
 
 void enable_interrupts(bool nested, uint8_t interrupt_level)
@@ -267,16 +343,16 @@ void stepper_setup(void)
 
 void step_forward(void)
 {
-    current_state++;
-    current_state &= 0x07;
+    current_stepper_state++;
+    current_stepper_state &= 0x07;
     
-    STEPPER_REG_UPDATE(output_value[current_state]);
+    STEPPER_REG_UPDATE(output_stepper_value[current_stepper_state]);
 }
 
 void step_backward(void)
 {
-    current_state--;
-    current_state &= 0x07;
+    current_stepper_state--;
+    current_stepper_state &= 0x07;
     
-    STEPPER_REG_UPDATE(output_value[current_state]); 
+    STEPPER_REG_UPDATE(output_stepper_value[current_stepper_state]); 
 }

@@ -23,6 +23,6 @@ typedef enum {RP0, RP1, RP2, RP3, RP4, RP5, RP6, RP7, RP8, RP9, RP10, RP11,
               RP12, RP13, RP14, RP15, VSS = 0b11111, NONE} rp_pin;
               
 void set_rpp_output(rp_pin pin, rp_output output);
-void set_rpp_input(rp_pin pin, rp_input output);
+void set_rpp_input(rp_pin pin, rp_input input);
 
 #endif	/* REMAPPABLE_H */

@@ -57,6 +57,7 @@
 #include "dsSPI.h"
 #include "dsEInt.h"
 #include "dsOscillator.h"
+#include "dsEserial.h"
 
 
 /*
@@ -139,24 +140,43 @@ volatile uint16_t set_point;
 #define TIMEOUT         312
 #define SEND_DELAY      14
 
-
+bool stop_func(void)
+{
+//    static int count = 0;
+//    count++;
+//    
+//    if (count > 32) {
+//        count = 0;
+//        return true;
+//    } else {
+//        return false;
+//    }
+    
+    return send_status;
+}
 
 int main(void) {
     
     initialize_oscillator(0, 0, 0, DOZE_1, FRC_1, OUT_2, 2, 39, ACLK_256, 0x1E);
     
-    //ADC_init();
+    ADC_init();
     
-    initialize_timer1(TMR1_ON | TMR1_SCALE_64, 6246);
-    initialize_SPI1(SPI1_ENABLE, SPI1_MASTER | SPI1_SPRE_8 | SPI1_PPRE_64 | SPI1_CLK_POL,
-                    0 ,RP10, RP11, RP12, NONE);
-    initialize_external_interrupt(INT_1, POS_EDGE, RP13);
+//    initialize_timer1(TMR1_ON | TMR1_SCALE_64, 6246);
+//    initialize_SPI1(SPI1_ENABLE, SPI1_MASTER | SPI1_SPRE_8 | SPI1_PPRE_64 | SPI1_CLK_POL,
+//                    0 ,RP10, RP11, RP12, NONE);
+//    initialize_external_interrupt(INT_1, POS_EDGE, RP13);
+    
+    eserial1_initialize(86, true, RP11, RP12, &LATB, _LATB_LATB10_MASK, &LATB, 
+                        _LATB_LATB13_MASK);
+    TRISBbits.TRISB10 = 0;
+    AD1PCFGLbits.PCFG11 = 1;
+    TRISBbits.TRISB13 = 0;
     
     initialize_timer2(TMR2_ON | TMR2_SCALE_1, 1019);
     initialize_PWM1(TIMER2, NONE, false, false); 
     PWM1_set_value(0);
     
-    initialize_timer3(TMR3_ON | TMR3_SCALE_64, 6246);
+    initialize_timer3(TMR3_ON | TMR3_SCALE_64, 1873);
     enable_interrupts(false, 0);
     init_timer_interrupt(TIMER3, 1);
     
@@ -183,7 +203,8 @@ int main(void) {
     
     while(1) {
         
-        espi1_master_receive(receive, TIMER1, TIMEOUT, SEND_DELAY);
+//        espi1_master_receive(receive, TIMER1, TIMEOUT, SEND_DELAY);
+        eserial1_receive(receive, stop_func);
         
         while (buffer_count(receive) >= 3) {
             received_value = buffer_pop(receive);
@@ -226,7 +247,8 @@ int main(void) {
         }
         
 
-        espi1_master_send(send, TIMER1, TIMEOUT, SEND_DELAY);
+//        espi1_master_send(send, TIMER1, TIMEOUT, SEND_DELAY);
+        eserial1_send(send);
     }
     
     return (0);
@@ -235,7 +257,7 @@ int main(void) {
 void __attribute__((__interrupt__, __no_auto_psv__)) _T3Interrupt(void)
 {
     clear_timer_interrupt(TIMER3);
-    /*float set = set_point / 1023.0;
+    float set = set_point / 1023.0;
     float adc_value = read_adc_ch0() / 1023.0;
     float result = proportional(set,  adc_value, 5.0);
     if (result > 1.0)
@@ -244,7 +266,7 @@ void __attribute__((__interrupt__, __no_auto_psv__)) _T3Interrupt(void)
         result = -1.0;
     
     result *= 1023;
-    set_value_motor((int16_t)result);*/
+    set_value_motor((int16_t)result);
     static uint16_t stepper_interval_count = 1;
     if (stepper_interval_count >= stepper_interval) {
         if (step_count || continuos_steps) {

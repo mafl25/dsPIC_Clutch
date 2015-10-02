@@ -4,7 +4,9 @@ dsTimers.h  \
 remappable.h  \
 dsPWM.h  \
  dsSPI.h  \
- C:/Users/Manuel/Documents/PICLibrary/PICLibraries.X/circular_buffer.h  \
+circular_buffer.h  \
  C:/Users/Manuel/Documents/PICLibrary/PICLibraries.X/encoding.h  \
 dsEInt.h  \
- dsOscillator.h 
+ dsOscillator.h  \
+dsEserial.h  \
+dsUART.h 

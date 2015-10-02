@@ -9,9 +9,11 @@
       <itemPath>dsSPI.h</itemPath>
       <itemPath>dsEInt.h</itemPath>
       <itemPath>dsTimers.h</itemPath>
-      <itemPath>C:/Users/Manuel/Documents/PICLibrary/PICLibraries.X/circular_buffer.h</itemPath>
       <itemPath>C:/Users/Manuel/Documents/PICLibrary/PICLibraries.X/encoding.h</itemPath>
       <itemPath>dsOscillator.h</itemPath>
+      <itemPath>circular_buffer.h</itemPath>
+      <itemPath>dsEserial.h</itemPath>
+      <itemPath>dsUART.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -26,9 +28,11 @@
       <itemPath>dsEInt.c</itemPath>
       <itemPath>dsSPI.c</itemPath>
       <itemPath>dsTimers.c</itemPath>
-      <itemPath>C:/Users/Manuel/Documents/PICLibrary/PICLibraries.X/circular_buffer.c</itemPath>
       <itemPath>C:/Users/Manuel/Documents/PICLibrary/PICLibraries.X/encoding.c</itemPath>
       <itemPath>dsOscillator.c</itemPath>
+      <itemPath>circular_buffer.c</itemPath>
+      <itemPath>dsEserial.c</itemPath>
+      <itemPath>dsUART.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -39,6 +43,7 @@
   <sourceRootList>
     <Elem>../PICLibrary/PICLibraries.X</Elem>
     <Elem>C:/Users/Manuel/Documents/PICLibrary/PICLibraries.X</Elem>
+    <Elem>.</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

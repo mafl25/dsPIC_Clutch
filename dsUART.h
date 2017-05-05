@@ -51,5 +51,12 @@ void UART1_reset(void);
 void UART1_send_byte(uint8_t byte);
 int16_t UART1_receive_byte(void);
 
+
+void initialize_UART2(uint16_t register_1, uint16_t register_2, uint16_t brg,
+                      rp_pin tx_pin, rp_pin rx_pin, rp_pin cts, rp_pin rts);
+void UART2_reset(void);
+void UART2_send_byte(uint8_t byte);
+int16_t UART2_receive_byte(void);
+
 #endif	/* DSUART_H */
 

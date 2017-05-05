@@ -1,0 +1,73 @@
+/*float set = set_point / 1023.0;
+    float adc_value = read_adc_ch0() / 1023.0;
+    float result = proportional(set,  adc_value, 5.0);
+    if (result > 1.0)
+        result = 1.0;
+    else if (result < -1.0)
+        result = -1.0;
+    
+    result *= 1023;
+    set_value_motor((int16_t)result);*/  
+    
+    
+    /*if (stop_go) {
+        UART2_send_byte(0xAA);
+        int16_t byte_2;
+        int16_t byte_1;
+        int16_t byte_0;
+
+        do {
+            byte_2 = UART2_receive_byte();
+        } while (byte_2 < 0);
+        do {
+            byte_1 = UART2_receive_byte();
+        } while (byte_1 < 0);
+        do {
+            byte_0 = UART2_receive_byte();
+        } while (byte_0 < 0);
+
+        uint32_t speed_value = (uint32_t)byte_2 << 16;
+        speed_value = speed_value | (((uint32_t)byte_1) << 8);
+        speed_value = speed_value | byte_0;
+
+        float error = speed_set_point - (20000.0/(float)speed_value);
+
+        #define PROPORTIONAL    0.8
+        #define INTEGRAL        0.1//0.75
+        #define DERIVATIVE      0.0 //1.75
+
+        //PROPORTIONAL
+        float result = error * PROPORTIONAL;
+
+        //INTEGRAL
+        error_acum += error;
+        if (error_acum > 1.0/INTEGRAL)
+            error_acum = 1.0/INTEGRAL;
+        if (error_acum < -1.0/INTEGRAL)
+            error_acum = -1.0/INTEGRAL;
+        result += error_acum * INTEGRAL;
+
+        //DERIVATIVE
+        result += (error - prev_error) * DERIVATIVE;
+        prev_error = error;
+
+        //PRE-END
+        if (result > 1.0)
+            result = 1.0;
+        else if (result < -1.0)
+            result = -1.0;
+        result *= 1023;
+
+        if (result >= 0)
+            result = 1023 - result;
+        else
+            result = 1023;
+
+        PWM1_set_value((int16_t)result);
+        //set_value_motor((int16_t)result);
+    } else {
+        error_acum = 0;
+        prev_error = 0;
+        PWM1_set_value(1023);
+    }*/
+    

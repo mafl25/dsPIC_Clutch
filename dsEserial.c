@@ -4,6 +4,7 @@ static volatile unsigned int *rts;
 static unsigned int rts_mask;
 static volatile unsigned int *cts;
 static unsigned int cts_mask;
+static volatile bool stop_receive;
 
 #define SET_ONE(A, B)   (A | B)
 #define SET_ZERO(A, B)  (A & (~B))
@@ -56,10 +57,11 @@ void eserial1_receive(struct circular_buffer *buffer,
             goto Error;
         
         //Tells the PC to send new data
+        stop_receive = false;
         *rts = SET_ZERO(*rts, rts_mask);
         if (stop_function != NULL) {
             bool test = false;
-            while (buffer_space(buffer) && !test) {
+            while (buffer_space(buffer) && !test && !stop_receive) {
                 value = UART1_receive_byte();
                 if (value >= 0) 
                     buffer_push(buffer, value);
@@ -68,7 +70,7 @@ void eserial1_receive(struct circular_buffer *buffer,
                 test = (*stop_function)();
             }
         } else {
-            while (buffer_space(buffer)) {
+            while (buffer_space(buffer) && !stop_receive) {
                 value = UART1_receive_byte();
                 if (value >= 0) 
                     buffer_push(buffer, value);
@@ -85,6 +87,12 @@ void eserial1_receive(struct circular_buffer *buffer,
     UART1_reset();
     UART1_send_byte('v');
     return;
+}
+
+void eserial1_stop(void)
+{
+    *rts = SET_ONE(*rts, rts_mask);
+    stop_receive = true;
 }
 
 #undef SET_ONE

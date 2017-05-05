@@ -19,6 +19,7 @@ void eserial1_initialize(uint16_t brg, bool brgh, rp_pin tx_pin, rp_pin rx_pin,
 int16_t eserial1_send(struct circular_buffer *buffer);
 void eserial1_receive(struct circular_buffer *buffer, 
                          bool (*stop_function)(void));
+void eserial1_stop(void); // Need to implement this
 
 #endif	/* DSESERIAL_H */
 

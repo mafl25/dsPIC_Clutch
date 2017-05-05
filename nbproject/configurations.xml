@@ -14,6 +14,7 @@
       <itemPath>circular_buffer.h</itemPath>
       <itemPath>dsEserial.h</itemPath>
       <itemPath>dsUART.h</itemPath>
+      <itemPath>dsStepper.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -33,6 +34,7 @@
       <itemPath>circular_buffer.c</itemPath>
       <itemPath>dsEserial.c</itemPath>
       <itemPath>dsUART.c</itemPath>
+      <itemPath>dsStepper.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

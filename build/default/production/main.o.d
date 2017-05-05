@@ -9,4 +9,5 @@ circular_buffer.h  \
 dsEInt.h  \
  dsOscillator.h  \
 dsEserial.h  \
-dsUART.h 
+dsUART.h  \
+dsStepper.h 

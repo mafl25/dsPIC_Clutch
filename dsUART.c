@@ -44,3 +44,50 @@ int16_t UART1_receive_byte(void)
         return -1;
     }
 }
+
+
+// SECOND UART
+void initialize_UART2(uint16_t register_1, uint16_t register_2, uint16_t brg,
+                      rp_pin tx_pin, rp_pin rx_pin, rp_pin cts, rp_pin rts)
+{
+    set_rpp_output(tx_pin, U2TX);
+    set_rpp_output(rts, U2RTS);
+    set_rpp_input(rx_pin, U2RX);
+    set_rpp_input(cts, U2CTS);
+    
+    U2MODE = register_1;
+    U2STA = register_2;
+    U2BRG = brg;
+}
+
+void UART2_reset(void)
+{
+    uint16_t mode = U2MODE;
+    uint16_t sta = U2STA;
+    
+    U2MODEbits.UARTEN = 0;
+    U2MODEbits.UARTEN = 1;
+    
+    U2MODE = mode;
+    U2STA = sta;
+}
+
+void UART2_send_byte(uint8_t byte)
+{
+    while(U2STAbits.UTXBF);
+    U2TXREG = byte;
+}
+
+int16_t UART2_receive_byte(void) 
+{
+    if (U2STAbits.OERR || U2STAbits.FERR || U2STAbits.PERR) {
+        int16_t return_value = (U2STAbits.OERR << 3) | (U2STAbits.FERR << 2)
+                                | (U2STAbits.PERR << 1);
+        return_value *= -1;
+        return return_value;
+    } else if (U2STAbits.URXDA) {
+        return U2RXREG; 
+    } else {
+        return -1;
+    }
+}

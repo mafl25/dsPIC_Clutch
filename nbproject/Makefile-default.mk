@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c remappable.c dsPWM.c dsEInt.c dsSPI.c dsTimers.c C:/Users/Manuel/Documents/PICLibrary/PICLibraries.X/encoding.c dsOscillator.c circular_buffer.c dsEserial.c dsUART.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c remappable.c dsPWM.c dsEInt.c dsSPI.c dsTimers.c C:/Users/Manuel/Documents/PICLibrary/PICLibraries.X/encoding.c dsOscillator.c circular_buffer.c dsEserial.c dsUART.c dsStepper.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/remappable.o ${OBJECTDIR}/dsPWM.o ${OBJECTDIR}/dsEInt.o ${OBJECTDIR}/dsSPI.o ${OBJECTDIR}/dsTimers.o ${OBJECTDIR}/_ext/772281530/encoding.o ${OBJECTDIR}/dsOscillator.o ${OBJECTDIR}/circular_buffer.o ${OBJECTDIR}/dsEserial.o ${OBJECTDIR}/dsUART.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/remappable.o.d ${OBJECTDIR}/dsPWM.o.d ${OBJECTDIR}/dsEInt.o.d ${OBJECTDIR}/dsSPI.o.d ${OBJECTDIR}/dsTimers.o.d ${OBJECTDIR}/_ext/772281530/encoding.o.d ${OBJECTDIR}/dsOscillator.o.d ${OBJECTDIR}/circular_buffer.o.d ${OBJECTDIR}/dsEserial.o.d ${OBJECTDIR}/dsUART.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/remappable.o ${OBJECTDIR}/dsPWM.o ${OBJECTDIR}/dsEInt.o ${OBJECTDIR}/dsSPI.o ${OBJECTDIR}/dsTimers.o ${OBJECTDIR}/_ext/772281530/encoding.o ${OBJECTDIR}/dsOscillator.o ${OBJECTDIR}/circular_buffer.o ${OBJECTDIR}/dsEserial.o ${OBJECTDIR}/dsUART.o ${OBJECTDIR}/dsStepper.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/remappable.o.d ${OBJECTDIR}/dsPWM.o.d ${OBJECTDIR}/dsEInt.o.d ${OBJECTDIR}/dsSPI.o.d ${OBJECTDIR}/dsTimers.o.d ${OBJECTDIR}/_ext/772281530/encoding.o.d ${OBJECTDIR}/dsOscillator.o.d ${OBJECTDIR}/circular_buffer.o.d ${OBJECTDIR}/dsEserial.o.d ${OBJECTDIR}/dsUART.o.d ${OBJECTDIR}/dsStepper.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/remappable.o ${OBJECTDIR}/dsPWM.o ${OBJECTDIR}/dsEInt.o ${OBJECTDIR}/dsSPI.o ${OBJECTDIR}/dsTimers.o ${OBJECTDIR}/_ext/772281530/encoding.o ${OBJECTDIR}/dsOscillator.o ${OBJECTDIR}/circular_buffer.o ${OBJECTDIR}/dsEserial.o ${OBJECTDIR}/dsUART.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/remappable.o ${OBJECTDIR}/dsPWM.o ${OBJECTDIR}/dsEInt.o ${OBJECTDIR}/dsSPI.o ${OBJECTDIR}/dsTimers.o ${OBJECTDIR}/_ext/772281530/encoding.o ${OBJECTDIR}/dsOscillator.o ${OBJECTDIR}/circular_buffer.o ${OBJECTDIR}/dsEserial.o ${OBJECTDIR}/dsUART.o ${OBJECTDIR}/dsStepper.o
 
 # Source Files
-SOURCEFILES=main.c remappable.c dsPWM.c dsEInt.c dsSPI.c dsTimers.c C:/Users/Manuel/Documents/PICLibrary/PICLibraries.X/encoding.c dsOscillator.c circular_buffer.c dsEserial.c dsUART.c
+SOURCEFILES=main.c remappable.c dsPWM.c dsEInt.c dsSPI.c dsTimers.c C:/Users/Manuel/Documents/PICLibrary/PICLibraries.X/encoding.c dsOscillator.c circular_buffer.c dsEserial.c dsUART.c dsStepper.c
 
 
 CFLAGS=
@@ -159,6 +159,13 @@ ${OBJECTDIR}/dsUART.o: dsUART.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  dsUART.c  -o ${OBJECTDIR}/dsUART.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/dsUART.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf  -menable-fixed -I"C:/Users/Manuel/Documents/PICLibrary/PICLibraries.X" -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/dsUART.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/dsStepper.o: dsStepper.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/dsStepper.o.d 
+	@${RM} ${OBJECTDIR}/dsStepper.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  dsStepper.c  -o ${OBJECTDIR}/dsStepper.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/dsStepper.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf  -menable-fixed -I"C:/Users/Manuel/Documents/PICLibrary/PICLibraries.X" -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/dsStepper.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 else
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -236,6 +243,13 @@ ${OBJECTDIR}/dsUART.o: dsUART.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/dsUART.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  dsUART.c  -o ${OBJECTDIR}/dsUART.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/dsUART.o.d"        -g -omf=elf  -menable-fixed -I"C:/Users/Manuel/Documents/PICLibrary/PICLibraries.X" -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/dsUART.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/dsStepper.o: dsStepper.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/dsStepper.o.d 
+	@${RM} ${OBJECTDIR}/dsStepper.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  dsStepper.c  -o ${OBJECTDIR}/dsStepper.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/dsStepper.o.d"        -g -omf=elf  -menable-fixed -I"C:/Users/Manuel/Documents/PICLibrary/PICLibraries.X" -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/dsStepper.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

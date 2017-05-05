@@ -58,14 +58,7 @@
 #include "dsEInt.h"
 #include "dsOscillator.h"
 #include "dsEserial.h"
-
-
-/*
- * #define FCY 40000000
- * #define BAUDRATE 9600
- * #define BRGVAL ((FCY/BAUDRATE)/16) - 1
- * 
- */
+#include "dsStepper.h"
 
 void enable_interrupts(bool nested, uint8_t interrupt_level);
 void disable_interrpts(void);
@@ -77,11 +70,18 @@ uint16_t read_adc_ch0(void) {
     return ADC1BUF0;
 }
 
-float proportional(float setpoint, float value, float constant)
-{
-    return (setpoint - value) * constant;
-}
+void ADC_init(void);
 
+#define MAX_STEPS       1000
+#define STEPPER_BYTE    0xEE
+static volatile int16_t stepper_position;
+static volatile bool continuos_steps; 
+static volatile bool stepper_direction;
+static volatile uint16_t step_count;
+static volatile uint16_t stepper_interval;
+
+#define SPEED_BYTE 0xEA
+bool volatile stop_go;
 void set_value_motor(int16_t value) {
     if (value >= 0) {
         PWM1_shut_output(RP7);
@@ -95,63 +95,10 @@ void set_value_motor(int16_t value) {
     PWM1_set_value(value);
 }
 
-void ADC_init(void);
-
-
-#define TRIS_STEPPER_OUT_A(A)   TRISBbits.TRISB2 = (A)
-#define TRIS_STEPPER_OUT_B(A)   TRISBbits.TRISB3 = (A)
-#define TRIS_STEPPER_OUT_C(A)   TRISBbits.TRISB4 = (A)
-#define TRIS_STEPPER_OUT_D(A)   TRISBbits.TRISB5 = (A)
-
-#define STEPPER_OUT_A(A)        LATBbits.LATB2 = (A)
-#define STEPPER_OUT_B(A)        LATBbits.LATB3 = (A)
-#define STEPPER_OUT_C(A)        LATBbits.LATB4 = (A)
-#define STEPPER_OUT_D(A)        LATBbits.LATB5 = (A)
-
-#define AN_STEPPER_OUT_A(A)     AD1PCFGLbits.PCFG4 = (A)
-#define AN_STEPPER_OUT_B(A)     AD1PCFGLbits.PCFG5 = (A)
-#define AN_STEPPER_OUT_C(A)
-#define AN_STEPPER_OUT_D(A)
-
-#define STEPPER_REG_UPDATE(A)   LATB = (LATB & 0xFFC3) | ((A) << 2)
-
-static volatile bool continuos_steps; 
-static volatile bool stepper_direction;
-static volatile uint16_t step_count;
-static volatile uint16_t stepper_interval;
-static volatile uint8_t current_stepper_state;
-static volatile uint8_t output_stepper_value[8] = {0x01, 0x03, 0x02, 0x06,
-                                                   0x04, 0x0C, 0x08, 0x09};
-
-void stepper_setup(void);
-void step_forward(void);
-void step_backward(void);
-
-
 static volatile bool send_status;
-#define MAX_STEPS       1000
-static volatile int16_t stepper_position;
-
-
-volatile uint16_t set_point;
-
-
-
-#define TIMEOUT         312
-#define SEND_DELAY      14
 
 bool stop_func(void)
 {
-//    static int count = 0;
-//    count++;
-//    
-//    if (count > 32) {
-//        count = 0;
-//        return true;
-//    } else {
-//        return false;
-//    }
-    
     return send_status;
 }
 
@@ -159,14 +106,12 @@ int main(void) {
     
     initialize_oscillator(0, 0, 0, DOZE_1, FRC_1, OUT_2, 2, 39, ACLK_256, 0x1E);
     
-    ADC_init();
+
+    initialize_UART2(UART_EN | UART_TX_RX | UART_8BIT_NO_PAR | UART_BRGH, 
+                     UART_TX_INT_MODE3 | UART_RX_EN | UART_TX_EN 
+                     | UART_RX_INT_MODE3, 9, RP9, RP15, NONE, NONE);
     
-//    initialize_timer1(TMR1_ON | TMR1_SCALE_64, 6246);
-//    initialize_SPI1(SPI1_ENABLE, SPI1_MASTER | SPI1_SPRE_8 | SPI1_PPRE_64 | SPI1_CLK_POL,
-//                    0 ,RP10, RP11, RP12, NONE);
-//    initialize_external_interrupt(INT_1, POS_EDGE, RP13);
-    
-    eserial1_initialize(86, true, RP11, RP12, &LATB, _LATB_LATB10_MASK, &LATB, 
+    eserial1_initialize(32, true, RP11, RP12, &LATB, _LATB_LATB10_MASK, &LATB, 
                         _LATB_LATB13_MASK);
     TRISBbits.TRISB10 = 0;
     AD1PCFGLbits.PCFG11 = 1;
@@ -174,9 +119,10 @@ int main(void) {
     
     initialize_timer2(TMR2_ON | TMR2_SCALE_1, 1019);
     initialize_PWM1(TIMER2, NONE, false, false); 
-    PWM1_set_value(0);
+    PWM1_set_value(1023);
+    PWM1_set_output(RP6);
     
-    initialize_timer3(TMR3_ON | TMR3_SCALE_64, 1873);
+    initialize_timer3(TMR3_ON | TMR3_SCALE_64, 3123);
     enable_interrupts(false, 0);
     init_timer_interrupt(TIMER3, 1);
     
@@ -189,12 +135,9 @@ int main(void) {
         stepper_position = 0;
         __delay_ms(5);
     }
+    stepper_shut_down();
         
-    
     uint16_t received_value = 0;
-    
-    set_point = 512;
-
     struct circular_buffer _receive = {0, 0, {0}};
     struct circular_buffer *receive = &_receive;
     
@@ -203,7 +146,6 @@ int main(void) {
     
     while(1) {
         
-//        espi1_master_receive(receive, TIMER1, TIMEOUT, SEND_DELAY);
         eserial1_receive(receive, stop_func);
         
         while (buffer_count(receive) >= 3) {
@@ -215,7 +157,7 @@ int main(void) {
                 case 0xAC:
                     byte_1 = buffer_pop(receive);
                     byte_2 = buffer_pop(receive);
-                    set_point = (byte_1 << 2 | byte_2);
+                    PWM1_set_value(1023 - (byte_1 << 2 | byte_2));
                     break;
                 case 0xAA:
                     byte_1 = buffer_pop(receive);
@@ -236,37 +178,64 @@ int main(void) {
                     byte_1 = buffer_pop(receive);
                     byte_2 = buffer_pop(receive);
                     stepper_interval = (byte_1 << 8 | byte_2);
+                    break;
+                case 0xCA:
+                    buffer_pop(receive);
+                    buffer_pop(receive);
+                    stop_go = true;
+                    break;
+                case 0xCB:
+                    buffer_pop(receive);
+                    buffer_pop(receive);
+                    stop_go = false;
+                    break;
             }    
         }
             
         if (send_status) {
+            UART2_send_byte(0xAA);
+            
+            int16_t byte_2;
+            int16_t byte_1;
+            int16_t byte_0;
+
+            do {
+                byte_2 = UART2_receive_byte();
+            } while (byte_2 < 0);
+            do {
+                byte_1 = UART2_receive_byte();
+            } while (byte_1 < 0);
+            do {
+                byte_0 = UART2_receive_byte();
+            } while (byte_0 < 0);
+            
+            
             buffer_push(send, 0x55);
             buffer_push(send, 0xDD);
-            buffer_push(send, 0x00);
+            buffer_push(send, 0x07);
+            buffer_push(send, STEPPER_BYTE);
+            buffer_push(send, (stepper_position >> 8) & 0xFF);
+            buffer_push(send, stepper_position & 0xFF);
+            buffer_push(send, SPEED_BYTE);
+            buffer_push(send, byte_2);
+            buffer_push(send, byte_1);
+            buffer_push(send, byte_0);
             send_status = false;
         }
         
-
-//        espi1_master_send(send, TIMER1, TIMEOUT, SEND_DELAY);
         eserial1_send(send);
     }
     
     return (0);
 }
 
+
+
 void __attribute__((__interrupt__, __no_auto_psv__)) _T3Interrupt(void)
 {
     clear_timer_interrupt(TIMER3);
-    float set = set_point / 1023.0;
-    float adc_value = read_adc_ch0() / 1023.0;
-    float result = proportional(set,  adc_value, 5.0);
-    if (result > 1.0)
-        result = 1.0;
-    else if (result < -1.0)
-        result = -1.0;
+    eserial1_stop();
     
-    result *= 1023;
-    set_value_motor((int16_t)result);
     static uint16_t stepper_interval_count = 1;
     if (stepper_interval_count >= stepper_interval) {
         if (step_count || continuos_steps) {
@@ -290,13 +259,15 @@ void __attribute__((__interrupt__, __no_auto_psv__)) _T3Interrupt(void)
             
             if (step_count)
                 step_count--;
+        } else {
+            stepper_shut_down();
         }
         stepper_interval_count = 0;
     }
     stepper_interval_count++;
     
     static uint16_t status_count = 1; 
-    if (status_count == 40) {
+    if (status_count == 1) {
         send_status = true;
         status_count = 0;
     }
@@ -345,36 +316,3 @@ void ADC_init(void)
     AD1CON1bits.ADON = 1;
 }
 
-void stepper_setup(void)
-{
-    AN_STEPPER_OUT_A(1);
-    AN_STEPPER_OUT_B(1);
-    AN_STEPPER_OUT_C(1);
-    AN_STEPPER_OUT_D(1);
-    
-    STEPPER_OUT_A(0);
-    STEPPER_OUT_B(0);
-    STEPPER_OUT_C(0);
-    STEPPER_OUT_D(0);
-    
-    TRIS_STEPPER_OUT_A(0);
-    TRIS_STEPPER_OUT_B(0);
-    TRIS_STEPPER_OUT_C(0);
-    TRIS_STEPPER_OUT_D(0);
-}
-
-void step_forward(void)
-{
-    current_stepper_state++;
-    current_stepper_state &= 0x07;
-    
-    STEPPER_REG_UPDATE(output_stepper_value[current_stepper_state]);
-}
-
-void step_backward(void)
-{
-    current_stepper_state--;
-    current_stepper_state &= 0x07;
-    
-    STEPPER_REG_UPDATE(output_stepper_value[current_stepper_state]); 
-}

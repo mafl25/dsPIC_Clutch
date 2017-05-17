@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/production/dsTest.X.production.elf">
+  <executable name="dist/default/debug/dsTest.X.debug.elf">
     <memory name="data">
       <units>bytes</units>
       <length>16384</length>
-      <used>22</used>
-      <free>16362</free>
+      <used>102</used>
+      <free>16282</free>
     </memory>
     <memory name="program">
       <units>bytes</units>
       <length>65280</length>
-      <used>10173</used>
-      <free>55107</free>
+      <used>10089</used>
+      <free>55191</free>
     </memory>
   </executable>
 </project>

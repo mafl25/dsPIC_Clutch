@@ -6,7 +6,7 @@ Tool Name:
 Command:
   -p33FJ64GP802 \
   -o \
-  dist/default/production/dsTest.X.production.elf \
+  dist/default/debug/dsTest.X.debug.elf \
   -Lc:/program files (x86)/microchip/xc16/v1.25/bin/bin/.. \
   -Lc:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib \
   -Lc:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../support/PIC24E/gld \
@@ -15,20 +15,28 @@ Command:
   -Lc:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../support/dsPIC30F/gld \
   -Lc:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../support/dsPIC33E/gld \
   -Lc:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../support/dsPIC33F/gld \
-  build/default/production/main.o \
-  build/default/production/remappable.o \
-  build/default/production/dsPWM.o \
-  build/default/production/dsEInt.o \
-  build/default/production/dsSPI.o \
-  build/default/production/dsTimers.o \
-  build/default/production/_ext/772281530/encoding.o \
-  build/default/production/dsOscillator.o \
-  build/default/production/circular_buffer.o \
-  build/default/production/dsEserial.o \
-  build/default/production/dsUART.o \
-  build/default/production/dsStepper.o \
+  build/default/debug/main.o \
+  build/default/debug/remappable.o \
+  build/default/debug/dsPWM.o \
+  build/default/debug/dsEInt.o \
+  build/default/debug/dsSPI.o \
+  build/default/debug/dsTimers.o \
+  build/default/debug/_ext/772281530/encoding.o \
+  build/default/debug/dsOscillator.o \
+  build/default/debug/circular_buffer.o \
+  build/default/debug/dsEserial.o \
+  build/default/debug/dsUART.o \
+  build/default/debug/dsStepper.o \
+  -TC:\\tmp0000124c.00 \
+  -TC:\\tmp0000124c.01 \
+  -TC:\\tmp0000124c.02 \
+  -TC:\\tmp0000124c.03 \
+  -TC:\\tmp0000124c.04 \
   --defsym=__MPLAB_BUILD=1 \
-  -Tp33FJ64GP802.gld.00 \
+  --defsym=__MPLAB_DEBUG=1 \
+  --defsym=__DEBUG=1 \
+  --defsym=__MPLAB_DEBUGGER_PK3=1 \
+  -Tp33FJ64GP802.gld.05 \
   --stack=16 \
   --check-sections \
   --data-init \
@@ -40,10 +48,10 @@ Command:
   --stackguard=16 \
   --no-force-link \
   --smart-io \
-  -Map=dist/default/production/dsTest.X.production.map \
+  -Map=dist/default/debug/dsTest.X.debug.map \
   --report-mem \
   --memorysummary \
-  dist/default/production/memoryfile.xml \
+  dist/default/debug/memoryfile.xml \
   -start-group \
   --library=lega-pic30-elf \
   --library=m-elf \
@@ -59,17 +67,19 @@ c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.
 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
                               c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o) (__data_init_standard)
 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(addsf3.eo)
-                              build/default/production/main.o (___subsf3)
+                              build/default/debug/main.o (___subsf3)
 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(divsf3.eo)
-                              build/default/production/main.o (___divsf3)
+                              build/default/debug/main.o (___divsf3)
 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(feqltle.eo)
-                              build/default/production/main.o (___ltsf2)
+                              build/default/debug/main.o (___ltsf2)
 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fgtge.eo)
-                              build/default/production/main.o (___gtsf2)
+                              build/default/debug/main.o (___gtsf2)
 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fixsfsi.eo)
-                              build/default/production/main.o (_(float, int, long long, short, float, short, int))
+                              build/default/debug/main.o (_(float, int, long long, short, float, short, int))
 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatsisf.eo)
-                              build/default/production/main.o (___floatsisf)
+                              build/default/debug/main.o (___floatsisf)
+c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatunsisf.eo)
+                              build/default/debug/main.o (___floatunsisf)
 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fpack.eo)
                               c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(addsf3.eo) (__fpack)
 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(funpack.eo)
@@ -79,13 +89,13 @@ c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(funpack
 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(futil.eo)
                               c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(addsf3.eo) (__fPropagateNaN)
 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
-                              build/default/production/main.o (___mulsf3)
+                              build/default/debug/main.o (___mulsf3)
 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fcompare.eo)
                               c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(feqltle.eo) (__fcompare)
 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatdisf.eo)
                               c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatsisf.eo) (___floatdisf)
 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
-                              c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatdisf.eo) (___floatundisf)
+                              c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatunsisf.eo) (___floatundisf)
 
 
 xc16-ld 1.25 (A)
@@ -94,21 +104,26 @@ Program Memory  [Origin = 0x200, Length = 0xaa00]
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200               0x3f4           0x5ee  (1518)
-.text                        0x5f4              0x166a          0x219f  (8607)
-.dinit                      0x1c5e                0x20            0x30  (48)
+.text                        0x200               0x3f8           0x5f4  (1524)
+.text                        0x5f8              0x162e          0x2145  (8517)
+.dinit                      0x1c26                0x20            0x30  (48)
 
-                     Total program memory used (bytes):         0x27bd  (10173) 15%
+                     Total program memory used (bytes):         0x2769  (10089) 15%
 
 
 Data Memory  [Origin = 0x800, Length = 0x4000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.nbss                        0x800                   0             0xe  (14)
-.data                        0x80e                   0             0x8  (8)
+reserve_data_0x800           0x800                0x20            0x20  (32)
+reserve_data_0x820           0x820                 0x2             0x2  (2)
+reserve_data_0x822           0x822                 0x2             0x2  (2)
+reserve_data_0x824           0x824                 0x2             0x2  (2)
+reserve_data_0x826           0x826                0x2a            0x2a  (42)
+.nbss                        0x850                   0             0xe  (14)
+.data                        0x85e                   0             0x8  (8)
 
-                        Total data memory used (bytes):           0x16  (22) <1%
+                        Total data memory used (bytes):           0x66  (102) <1%
 
 
 Dynamic Memory Usage
@@ -116,182 +131,184 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x816                              0x3fea  (16362)
+stack                        0x866                              0x3f9a  (16282)
 
-                        Maximum dynamic memory (bytes):         0x3fea  (16362)
+                        Maximum dynamic memory (bytes):         0x3f9a  (16282)
 
 
 External Symbols in Program Memory (by address):
 
                   0x000200                  __resetPRI
                   0x00022c                  __psv_init
-                  0x00023c                  __data_init
                   0x00023c                  __data_init_standard
+                  0x00023c                  __data_init
                   0x00029e                  __DefaultInterrupt
                   0x0002a2                  ___subsf3
                   0x0002a4                  ___addsf3
                   0x00035e                  ___divsf3
+                  0x0003e2                  ___lesf2
                   0x0003e2                  ___ltsf2
                   0x0003e2                  ___eqsf2
-                  0x0003e2                  ___lesf2
                   0x0003e6                  ___gtsf2
                   0x0003e6                  ___gesf2
                   0x0003ea                  ___fixsfsi
                   0x00042c                  ___floatsisf
-                  0x000432                  __fpack
-                  0x00047e                  __funpack
-                  0x0004a8                  __funpack2
-                  0x0004b8                  __fPropagateNaN
-                  0x0004ca                  __fbopExit
-                  0x0004d2                  __fbopReturnNaN
-                  0x0004d8                  ___mulsf3
-                  0x000540                  __fcompare
-                  0x000576                  ___floatdisf
-                  0x000596                  ___floatundisf
-                  0x0005f4                  _stop_func
-                  0x0005fc                  _main
-                  0x0009fc                  __T3Interrupt
-                  0x000a20                  _enable_interrupts
-                  0x000a70                  _disable_interrupts
-                  0x000a80                  _ADC_init
-                  0x000adc                  _read_adc_ch0
-                  0x000af2                  _set_value_motor
-                  0x000b1c                  _set_rpp_output
-                  0x000f7e                  _set_rpp_input
-                  0x001010                  _initialize_SPI1
-                  0x0010f4                  _spi1_send_get_data
-                  0x001168                  _espi1_master_receive
-                  0x0011e4                  _espi1_master_send
-                  0x001260                  _initialize_timer1
-                  0x001288                  _initialize_timer2
-                  0x0012ae                  _initialize_timer3
-                  0x0012d4                  _set_timer
-                  0x00131a                  _timer_up
-                  0x001388                  _init_timer_interrupt
-                  0x001416                  _clear_timer_interrupt
-                  0x001442                  _initialize_UART1
-                  0x00147a                  _UART1_reset
-                  0x001494                  _UART1_send_byte
-                  0x0014ac                  _UART1_receive_byte
-                  0x001500                  _initialize_UART2
-                  0x001538                  _UART2_reset
-                  0x001552                  _UART2_send_byte
-                  0x00156a                  _UART2_receive_byte
-                  0x0015be                  _eserial1_initialize
-                  0x001612                  _eserial1_send
-                  0x00163c                  _eserial1_receive
-                  0x00171c                  _eserial1_stop
-                  0x001732                  _initialize_PWM1
-                  0x0017fa                  _PWM1_set_value
-                  0x001806                  _PWM1_change_output
-                  0x00182c                  _PWM1_set_output
-                  0x001842                  _PWM1_shut_output
-                  0x001858                  _initialize_oscillator
-                  0x001918                  _clock_fail
-                  0x00193c                  _enable_secondary_osc
-                  0x001954                  _switch_oscillator
-                  0x00196e                  _buffer_count
-                  0x00197a                  _buffer_space
-                  0x00198a                  _buffer_empty
-                  0x0019a0                  _buffer_full
-                  0x0019ba                  _buffer_push
-                  0x001a08                  _buffer_pop
-                  0x001a42                  _buffer_clear
-                  0x001a50                  _buffer_peek
-                  0x001a74                  _initialize_external_interrupt
-                  0x001b00                  _external_interrupt_ocurred
-                  0x001b66                  _encode_data
-                  0x001ba0                  _decode_data
-                  0x001be6                  _stepper_setup
-                  0x001c00                  _step_forward
-                  0x001c28                  _step_backward
-                  0x001c50                  _stepper_shut_down
+                  0x000432                  ___floatunsisf
+                  0x000436                  __fpack
+                  0x000482                  __funpack
+                  0x0004ac                  __funpack2
+                  0x0004bc                  __fPropagateNaN
+                  0x0004ce                  __fbopExit
+                  0x0004d6                  __fbopReturnNaN
+                  0x0004dc                  ___mulsf3
+                  0x000544                  __fcompare
+                  0x00057a                  ___floatdisf
+                  0x00059a                  ___floatundisf
+                  0x0005f8                  _set_rpp_output
+                  0x000a5a                  _set_rpp_input
+                  0x000aec                  _stop_func
+                  0x000af4                  _main
+                  0x000eb8                  __T3Interrupt
+                  0x000edc                  _enable_interrupts
+                  0x000f2c                  _disable_interrupts
+                  0x000f3c                  _ADC_init
+                  0x000f98                  _read_adc_ch0
+                  0x000fae                  _set_value_motor
+                  0x000fd8                  _initialize_SPI1
+                  0x0010bc                  _spi1_send_get_data
+                  0x001130                  _espi1_master_receive
+                  0x0011ac                  _espi1_master_send
+                  0x001228                  _initialize_timer1
+                  0x001250                  _initialize_timer2
+                  0x001276                  _initialize_timer3
+                  0x00129c                  _set_timer
+                  0x0012e2                  _timer_up
+                  0x001350                  _init_timer_interrupt
+                  0x0013de                  _clear_timer_interrupt
+                  0x00140a                  _initialize_UART1
+                  0x001442                  _UART1_reset
+                  0x00145c                  _UART1_send_byte
+                  0x001474                  _UART1_receive_byte
+                  0x0014c8                  _initialize_UART2
+                  0x001500                  _UART2_reset
+                  0x00151a                  _UART2_send_byte
+                  0x001532                  _UART2_receive_byte
+                  0x001586                  _eserial1_initialize
+                  0x0015da                  _eserial1_send
+                  0x001604                  _eserial1_receive
+                  0x0016e4                  _eserial1_stop
+                  0x0016fa                  _initialize_PWM1
+                  0x0017c2                  _PWM1_set_value
+                  0x0017ce                  _PWM1_change_output
+                  0x0017f4                  _PWM1_set_output
+                  0x00180a                  _PWM1_shut_output
+                  0x001820                  _initialize_oscillator
+                  0x0018e0                  _clock_fail
+                  0x001904                  _enable_secondary_osc
+                  0x00191c                  _switch_oscillator
+                  0x001936                  _buffer_count
+                  0x001942                  _buffer_space
+                  0x001952                  _buffer_empty
+                  0x001968                  _buffer_full
+                  0x001982                  _buffer_push
+                  0x0019d0                  _buffer_pop
+                  0x001a0a                  _buffer_clear
+                  0x001a18                  _buffer_peek
+                  0x001a3c                  _initialize_external_interrupt
+                  0x001ac8                  _external_interrupt_ocurred
+                  0x001b2e                  _encode_data
+                  0x001b68                  _decode_data
+                  0x001bae                  _stepper_setup
+                  0x001bc8                  _step_forward
+                  0x001bf0                  _step_backward
+                  0x001c18                  _stepper_shut_down
 
 External Symbols in Program Memory (by name):
 
-                  0x000a80                  _ADC_init
-                  0x001806                  _PWM1_change_output
-                  0x00182c                  _PWM1_set_output
-                  0x0017fa                  _PWM1_set_value
-                  0x001842                  _PWM1_shut_output
-                  0x0014ac                  _UART1_receive_byte
-                  0x00147a                  _UART1_reset
-                  0x001494                  _UART1_send_byte
-                  0x00156a                  _UART2_receive_byte
-                  0x001538                  _UART2_reset
-                  0x001552                  _UART2_send_byte
+                  0x000f3c                  _ADC_init
+                  0x0017ce                  _PWM1_change_output
+                  0x0017f4                  _PWM1_set_output
+                  0x0017c2                  _PWM1_set_value
+                  0x00180a                  _PWM1_shut_output
+                  0x001474                  _UART1_receive_byte
+                  0x001442                  _UART1_reset
+                  0x00145c                  _UART1_send_byte
+                  0x001532                  _UART2_receive_byte
+                  0x001500                  _UART2_reset
+                  0x00151a                  _UART2_send_byte
                   0x00029e                  __DefaultInterrupt
-                  0x0009fc                  __T3Interrupt
+                  0x000eb8                  __T3Interrupt
                   0x0002a4                  ___addsf3
                   0x00035e                  ___divsf3
                   0x0003e2                  ___eqsf2
                   0x0003ea                  ___fixsfsi
-                  0x000576                  ___floatdisf
+                  0x00057a                  ___floatdisf
                   0x00042c                  ___floatsisf
-                  0x000596                  ___floatundisf
+                  0x00059a                  ___floatundisf
+                  0x000432                  ___floatunsisf
                   0x0003e6                  ___gesf2
                   0x0003e6                  ___gtsf2
                   0x0003e2                  ___lesf2
                   0x0003e2                  ___ltsf2
-                  0x0004d8                  ___mulsf3
+                  0x0004dc                  ___mulsf3
                   0x0002a2                  ___subsf3
                   0x00023c                  __data_init
                   0x00023c                  __data_init_standard
-                  0x0004b8                  __fPropagateNaN
-                  0x0004ca                  __fbopExit
-                  0x0004d2                  __fbopReturnNaN
-                  0x000540                  __fcompare
-                  0x000432                  __fpack
-                  0x00047e                  __funpack
-                  0x0004a8                  __funpack2
+                  0x0004bc                  __fPropagateNaN
+                  0x0004ce                  __fbopExit
+                  0x0004d6                  __fbopReturnNaN
+                  0x000544                  __fcompare
+                  0x000436                  __fpack
+                  0x000482                  __funpack
+                  0x0004ac                  __funpack2
                   0x00022c                  __psv_init
                   0x000200                  __resetPRI
-                  0x001a42                  _buffer_clear
-                  0x00196e                  _buffer_count
-                  0x00198a                  _buffer_empty
-                  0x0019a0                  _buffer_full
-                  0x001a50                  _buffer_peek
-                  0x001a08                  _buffer_pop
-                  0x0019ba                  _buffer_push
-                  0x00197a                  _buffer_space
-                  0x001416                  _clear_timer_interrupt
-                  0x001918                  _clock_fail
-                  0x001ba0                  _decode_data
-                  0x000a70                  _disable_interrupts
-                  0x000a20                  _enable_interrupts
-                  0x00193c                  _enable_secondary_osc
-                  0x001b66                  _encode_data
-                  0x0015be                  _eserial1_initialize
-                  0x00163c                  _eserial1_receive
-                  0x001612                  _eserial1_send
-                  0x00171c                  _eserial1_stop
-                  0x001168                  _espi1_master_receive
-                  0x0011e4                  _espi1_master_send
-                  0x001b00                  _external_interrupt_ocurred
-                  0x001388                  _init_timer_interrupt
-                  0x001732                  _initialize_PWM1
-                  0x001010                  _initialize_SPI1
-                  0x001442                  _initialize_UART1
-                  0x001500                  _initialize_UART2
-                  0x001a74                  _initialize_external_interrupt
-                  0x001858                  _initialize_oscillator
-                  0x001260                  _initialize_timer1
-                  0x001288                  _initialize_timer2
-                  0x0012ae                  _initialize_timer3
-                  0x0005fc                  _main
-                  0x000adc                  _read_adc_ch0
-                  0x000f7e                  _set_rpp_input
-                  0x000b1c                  _set_rpp_output
-                  0x0012d4                  _set_timer
-                  0x000af2                  _set_value_motor
-                  0x0010f4                  _spi1_send_get_data
-                  0x001c28                  _step_backward
-                  0x001c00                  _step_forward
-                  0x001be6                  _stepper_setup
-                  0x001c50                  _stepper_shut_down
-                  0x0005f4                  _stop_func
-                  0x001954                  _switch_oscillator
-                  0x00131a                  _timer_up
+                  0x001a0a                  _buffer_clear
+                  0x001936                  _buffer_count
+                  0x001952                  _buffer_empty
+                  0x001968                  _buffer_full
+                  0x001a18                  _buffer_peek
+                  0x0019d0                  _buffer_pop
+                  0x001982                  _buffer_push
+                  0x001942                  _buffer_space
+                  0x0013de                  _clear_timer_interrupt
+                  0x0018e0                  _clock_fail
+                  0x001b68                  _decode_data
+                  0x000f2c                  _disable_interrupts
+                  0x000edc                  _enable_interrupts
+                  0x001904                  _enable_secondary_osc
+                  0x001b2e                  _encode_data
+                  0x001586                  _eserial1_initialize
+                  0x001604                  _eserial1_receive
+                  0x0015da                  _eserial1_send
+                  0x0016e4                  _eserial1_stop
+                  0x001130                  _espi1_master_receive
+                  0x0011ac                  _espi1_master_send
+                  0x001ac8                  _external_interrupt_ocurred
+                  0x001350                  _init_timer_interrupt
+                  0x0016fa                  _initialize_PWM1
+                  0x000fd8                  _initialize_SPI1
+                  0x00140a                  _initialize_UART1
+                  0x0014c8                  _initialize_UART2
+                  0x001a3c                  _initialize_external_interrupt
+                  0x001820                  _initialize_oscillator
+                  0x001228                  _initialize_timer1
+                  0x001250                  _initialize_timer2
+                  0x001276                  _initialize_timer3
+                  0x000af4                  _main
+                  0x000f98                  _read_adc_ch0
+                  0x000a5a                  _set_rpp_input
+                  0x0005f8                  _set_rpp_output
+                  0x00129c                  _set_timer
+                  0x000fae                  _set_value_motor
+                  0x0010bc                  _spi1_send_get_data
+                  0x001bf0                  _step_backward
+                  0x001bc8                  _step_forward
+                  0x001bae                  _stepper_setup
+                  0x001c18                  _stepper_shut_down
+                  0x000aec                  _stop_func
+                  0x00191c                  _switch_oscillator
+                  0x0012e2                  _timer_up
 
 Memory Configuration
 
@@ -318,19 +335,47 @@ FUID3            0xf80016           0x000002
 
 Linker script and memory map
 
-LOAD build/default/production/main.o
-LOAD build/default/production/remappable.o
-LOAD build/default/production/dsPWM.o
-LOAD build/default/production/dsEInt.o
-LOAD build/default/production/dsSPI.o
-LOAD build/default/production/dsTimers.o
-LOAD build/default/production/_ext/772281530/encoding.o
-LOAD build/default/production/dsOscillator.o
-LOAD build/default/production/circular_buffer.o
-LOAD build/default/production/dsEserial.o
-LOAD build/default/production/dsUART.o
-LOAD build/default/production/dsStepper.o
+LOAD build/default/debug/main.o
+LOAD build/default/debug/remappable.o
+LOAD build/default/debug/dsPWM.o
+LOAD build/default/debug/dsEInt.o
+LOAD build/default/debug/dsSPI.o
+LOAD build/default/debug/dsTimers.o
+LOAD build/default/debug/_ext/772281530/encoding.o
+LOAD build/default/debug/dsOscillator.o
+LOAD build/default/debug/circular_buffer.o
+LOAD build/default/debug/dsEserial.o
+LOAD build/default/debug/dsUART.o
+LOAD build/default/debug/dsStepper.o
+
+reserve_data_0x800
+                    0x0800         0x20
+                    0x0820                  . = 0x20
+ *fill*             0x0800         0x2000
+
+reserve_data_0x820
+                    0x0820          0x2
+                    0x0822                  . = 0x2
+ *fill*             0x0820          0x200
+
+reserve_data_0x822
+                    0x0822          0x2
+                    0x0824                  . = 0x2
+ *fill*             0x0822          0x200
+
+reserve_data_0x824
+                    0x0824          0x2
+                    0x0826                  . = 0x2
+ *fill*             0x0824          0x200
+
+reserve_data_0x826
+                    0x0826         0x2a
+                    0x0850                  . = 0x2a
+ *fill*             0x0826         0x2a00
                     0x0001                  __MPLAB_BUILD = 0x1
+                    0x0001                  __MPLAB_DEBUG = 0x1
+                    0x0001                  __DEBUG = 0x1
+                    0x0001                  __MPLAB_DEBUGGER_PK3 = 0x1
 LOAD p33FJ64GP802
 LOAD c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libfx-elf.a
                     0xf80000                  __FBS = 0xf80000
@@ -362,7 +407,7 @@ LOAD c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200        0x3f4
+.text             0x000200        0x3f8
  *(.init)
  .init            0x000200         0x3c c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
                   0x000200                  __resetPRI
@@ -397,33 +442,36 @@ LOAD c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libfx-elf.a
  .libm.floatsisf
                   0x00042c          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatsisf.eo)
                   0x00042c                  ___floatsisf
- .libm.fpack      0x000432         0x4c c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fpack.eo)
-                  0x000432                  __fpack
- .libm.funpack    0x00047e         0x2a c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(funpack.eo)
-                  0x00047e                  __funpack
+ .libm.floatunsisf
+                  0x000432          0x4 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatunsisf.eo)
+                  0x000432                  ___floatunsisf
+ .libm.fpack      0x000436         0x4c c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fpack.eo)
+                  0x000436                  __fpack
+ .libm.funpack    0x000482         0x2a c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(funpack.eo)
+                  0x000482                  __funpack
  .libm.funpack2
-                  0x0004a8         0x10 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(funpack2.eo)
-                  0x0004a8                  __funpack2
+                  0x0004ac         0x10 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(funpack2.eo)
+                  0x0004ac                  __funpack2
  .libm.fPropagateNaN
-                  0x0004b8         0x12 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(futil.eo)
-                  0x0004b8                  __fPropagateNaN
+                  0x0004bc         0x12 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(futil.eo)
+                  0x0004bc                  __fPropagateNaN
  .libm.fbobExit
-                  0x0004ca          0x8 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(futil.eo)
-                  0x0004ca                  __fbopExit
+                  0x0004ce          0x8 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(futil.eo)
+                  0x0004ce                  __fbopExit
  .libm.fbopReturnNaN
-                  0x0004d2          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(futil.eo)
-                  0x0004d2                  __fbopReturnNaN
- .libm.mulsf3     0x0004d8         0x68 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
-                  0x0004d8                  ___mulsf3
+                  0x0004d6          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(futil.eo)
+                  0x0004d6                  __fbopReturnNaN
+ .libm.mulsf3     0x0004dc         0x68 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
+                  0x0004dc                  ___mulsf3
  .libm.fcompare
-                  0x000540         0x36 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fcompare.eo)
-                  0x000540                  __fcompare
+                  0x000544         0x36 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fcompare.eo)
+                  0x000544                  __fcompare
  .libm.floatdisf
-                  0x000576         0x20 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatdisf.eo)
-                  0x000576                  ___floatdisf
+                  0x00057a         0x20 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatdisf.eo)
+                  0x00057a                  ___floatdisf
  .libm.floatundisf
-                  0x000596         0x5e c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
-                  0x000596                  ___floatundisf
+                  0x00059a         0x5e c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
+                  0x00059a                  ___floatundisf
 
 usercode
  *(usercode)
@@ -467,79 +515,79 @@ __FUID3
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x93be
+.debug_info       0x000000       0x93a6
  *(.debug_info)
- .debug_info      0x000000       0x16a6 build/default/production/main.o
- .debug_info      0x0016a6       0x2619 build/default/production/remappable.o
- .debug_info      0x003cbf        0x780 build/default/production/dsPWM.o
- .debug_info      0x00443f        0x76a build/default/production/dsEInt.o
- .debug_info      0x004ba9        0xb1a build/default/production/dsSPI.o
- .debug_info      0x0056c3       0x152e build/default/production/dsTimers.o
- .debug_info      0x006bf1        0x1e1 build/default/production/_ext/772281530/encoding.o
- .debug_info      0x006dd2        0x9b6 build/default/production/dsOscillator.o
- .debug_info      0x007788        0x371 build/default/production/circular_buffer.o
- .debug_info      0x007af9        0x482 build/default/production/dsEserial.o
- .debug_info      0x007f7b        0xdfd build/default/production/dsUART.o
- .debug_info      0x008d78        0x646 build/default/production/dsStepper.o
+ .debug_info      0x000000       0x168e build/default/debug/main.o
+ .debug_info      0x00168e       0x2619 build/default/debug/remappable.o
+ .debug_info      0x003ca7        0x780 build/default/debug/dsPWM.o
+ .debug_info      0x004427        0x76a build/default/debug/dsEInt.o
+ .debug_info      0x004b91        0xb1a build/default/debug/dsSPI.o
+ .debug_info      0x0056ab       0x152e build/default/debug/dsTimers.o
+ .debug_info      0x006bd9        0x1e1 build/default/debug/_ext/772281530/encoding.o
+ .debug_info      0x006dba        0x9b6 build/default/debug/dsOscillator.o
+ .debug_info      0x007770        0x371 build/default/debug/circular_buffer.o
+ .debug_info      0x007ae1        0x482 build/default/debug/dsEserial.o
+ .debug_info      0x007f63        0xdfd build/default/debug/dsUART.o
+ .debug_info      0x008d60        0x646 build/default/debug/dsStepper.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0xd18
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x1f5 build/default/production/main.o
- .debug_abbrev    0x0001f5         0xf0 build/default/production/remappable.o
- .debug_abbrev    0x0002e5        0x10a build/default/production/dsPWM.o
- .debug_abbrev    0x0003ef        0x103 build/default/production/dsEInt.o
- .debug_abbrev    0x0004f2        0x189 build/default/production/dsSPI.o
- .debug_abbrev    0x00067b        0x129 build/default/production/dsTimers.o
- .debug_abbrev    0x0007a4         0x70 build/default/production/_ext/772281530/encoding.o
- .debug_abbrev    0x000814        0x114 build/default/production/dsOscillator.o
- .debug_abbrev    0x000928         0xe0 build/default/production/circular_buffer.o
- .debug_abbrev    0x000a08        0x104 build/default/production/dsEserial.o
- .debug_abbrev    0x000b0c        0x150 build/default/production/dsUART.o
- .debug_abbrev    0x000c5c         0xbc build/default/production/dsStepper.o
+ .debug_abbrev    0x000000        0x1f5 build/default/debug/main.o
+ .debug_abbrev    0x0001f5         0xf0 build/default/debug/remappable.o
+ .debug_abbrev    0x0002e5        0x10a build/default/debug/dsPWM.o
+ .debug_abbrev    0x0003ef        0x103 build/default/debug/dsEInt.o
+ .debug_abbrev    0x0004f2        0x189 build/default/debug/dsSPI.o
+ .debug_abbrev    0x00067b        0x129 build/default/debug/dsTimers.o
+ .debug_abbrev    0x0007a4         0x70 build/default/debug/_ext/772281530/encoding.o
+ .debug_abbrev    0x000814        0x114 build/default/debug/dsOscillator.o
+ .debug_abbrev    0x000928         0xe0 build/default/debug/circular_buffer.o
+ .debug_abbrev    0x000a08        0x104 build/default/debug/dsEserial.o
+ .debug_abbrev    0x000b0c        0x150 build/default/debug/dsUART.o
+ .debug_abbrev    0x000c5c         0xbc build/default/debug/dsStepper.o
 
-.debug_line       0x000000       0x25d4
+.debug_line       0x000000       0x258c
  *(.debug_line)
- .debug_line      0x000000        0x6db build/default/production/main.o
- .debug_line      0x0006db        0x5b1 build/default/production/remappable.o
- .debug_line      0x000c8c        0x24b build/default/production/dsPWM.o
- .debug_line      0x000ed7        0x1c7 build/default/production/dsEInt.o
- .debug_line      0x00109e        0x414 build/default/production/dsSPI.o
- .debug_line      0x0014b2        0x3da build/default/production/dsTimers.o
- .debug_line      0x00188c        0x13f build/default/production/_ext/772281530/encoding.o
- .debug_line      0x0019cb        0x22c build/default/production/dsOscillator.o
- .debug_line      0x001bf7        0x21b build/default/production/circular_buffer.o
- .debug_line      0x001e12        0x2a7 build/default/production/dsEserial.o
- .debug_line      0x0020b9        0x344 build/default/production/dsUART.o
- .debug_line      0x0023fd        0x1d7 build/default/production/dsStepper.o
+ .debug_line      0x000000        0x693 build/default/debug/main.o
+ .debug_line      0x000693        0x5b1 build/default/debug/remappable.o
+ .debug_line      0x000c44        0x24b build/default/debug/dsPWM.o
+ .debug_line      0x000e8f        0x1c7 build/default/debug/dsEInt.o
+ .debug_line      0x001056        0x414 build/default/debug/dsSPI.o
+ .debug_line      0x00146a        0x3da build/default/debug/dsTimers.o
+ .debug_line      0x001844        0x13f build/default/debug/_ext/772281530/encoding.o
+ .debug_line      0x001983        0x22c build/default/debug/dsOscillator.o
+ .debug_line      0x001baf        0x21b build/default/debug/circular_buffer.o
+ .debug_line      0x001dca        0x2a7 build/default/debug/dsEserial.o
+ .debug_line      0x002071        0x344 build/default/debug/dsUART.o
+ .debug_line      0x0023b5        0x1d7 build/default/debug/dsStepper.o
 
 .debug_frame      0x000000        0x4e4
  *(.debug_frame)
- .debug_frame     0x000000         0xb8 build/default/production/main.o
- .debug_frame     0x0000b8         0x44 build/default/production/remappable.o
- .debug_frame     0x0000fc         0x64 build/default/production/dsPWM.o
- .debug_frame     0x000160         0x34 build/default/production/dsEInt.o
- .debug_frame     0x000194         0x74 build/default/production/dsSPI.o
- .debug_frame     0x000208         0x84 build/default/production/dsTimers.o
- .debug_frame     0x00028c         0x34 build/default/production/_ext/772281530/encoding.o
- .debug_frame     0x0002c0         0x54 build/default/production/dsOscillator.o
- .debug_frame     0x000314         0x94 build/default/production/circular_buffer.o
- .debug_frame     0x0003a8         0x54 build/default/production/dsEserial.o
- .debug_frame     0x0003fc         0x94 build/default/production/dsUART.o
- .debug_frame     0x000490         0x54 build/default/production/dsStepper.o
+ .debug_frame     0x000000         0xb8 build/default/debug/main.o
+ .debug_frame     0x0000b8         0x44 build/default/debug/remappable.o
+ .debug_frame     0x0000fc         0x64 build/default/debug/dsPWM.o
+ .debug_frame     0x000160         0x34 build/default/debug/dsEInt.o
+ .debug_frame     0x000194         0x74 build/default/debug/dsSPI.o
+ .debug_frame     0x000208         0x84 build/default/debug/dsTimers.o
+ .debug_frame     0x00028c         0x34 build/default/debug/_ext/772281530/encoding.o
+ .debug_frame     0x0002c0         0x54 build/default/debug/dsOscillator.o
+ .debug_frame     0x000314         0x94 build/default/debug/circular_buffer.o
+ .debug_frame     0x0003a8         0x54 build/default/debug/dsEserial.o
+ .debug_frame     0x0003fc         0x94 build/default/debug/dsUART.o
+ .debug_frame     0x000490         0x54 build/default/debug/dsStepper.o
 
 .debug_str        0x000000        0x38b
  *(.debug_str)
- .debug_str       0x000000         0x70 build/default/production/main.o
- .debug_str       0x000070        0x122 build/default/production/remappable.o
- .debug_str       0x000192         0x26 build/default/production/dsPWM.o
- .debug_str       0x0001b8         0x2c build/default/production/dsEInt.o
- .debug_str       0x0001e4         0x66 build/default/production/dsSPI.o
- .debug_str       0x00024a         0x87 build/default/production/dsTimers.o
- .debug_str       0x0002d1         0x22 build/default/production/dsOscillator.o
- .debug_str       0x0002f3          0x7 build/default/production/circular_buffer.o
- .debug_str       0x0002fa         0x71 build/default/production/dsUART.o
- .debug_str       0x00036b         0x20 build/default/production/dsStepper.o
+ .debug_str       0x000000         0x70 build/default/debug/main.o
+ .debug_str       0x000070        0x122 build/default/debug/remappable.o
+ .debug_str       0x000192         0x26 build/default/debug/dsPWM.o
+ .debug_str       0x0001b8         0x2c build/default/debug/dsEInt.o
+ .debug_str       0x0001e4         0x66 build/default/debug/dsSPI.o
+ .debug_str       0x00024a         0x87 build/default/debug/dsTimers.o
+ .debug_str       0x0002d1         0x22 build/default/debug/dsOscillator.o
+ .debug_str       0x0002f3          0x7 build/default/debug/circular_buffer.o
+ .debug_str       0x0002fa         0x71 build/default/debug/dsUART.o
+ .debug_str       0x00036b         0x20 build/default/debug/dsStepper.o
 
 .debug_loc
  *(.debug_loc)
@@ -551,29 +599,29 @@ __FUID3
                   0x000000        0x54d
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x99 build/default/production/main.o
+                  0x000000         0x99 build/default/debug/main.o
  .debug_pubnames
-                  0x000099         0x37 build/default/production/remappable.o
+                  0x000099         0x37 build/default/debug/remappable.o
  .debug_pubnames
-                  0x0000d0         0x79 build/default/production/dsPWM.o
+                  0x0000d0         0x79 build/default/debug/dsPWM.o
  .debug_pubnames
-                  0x000149         0x53 build/default/production/dsEInt.o
+                  0x000149         0x53 build/default/debug/dsEInt.o
  .debug_pubnames
-                  0x00019c         0x6c build/default/production/dsSPI.o
+                  0x00019c         0x6c build/default/debug/dsSPI.o
  .debug_pubnames
-                  0x000208         0xa2 build/default/production/dsTimers.o
+                  0x000208         0xa2 build/default/debug/dsTimers.o
  .debug_pubnames
-                  0x0002aa         0x32 build/default/production/_ext/772281530/encoding.o
+                  0x0002aa         0x32 build/default/debug/_ext/772281530/encoding.o
  .debug_pubnames
-                  0x0002dc         0x6a build/default/production/dsOscillator.o
+                  0x0002dc         0x6a build/default/debug/dsOscillator.o
  .debug_pubnames
-                  0x000346         0x95 build/default/production/circular_buffer.o
+                  0x000346         0x95 build/default/debug/circular_buffer.o
  .debug_pubnames
-                  0x0003db         0x63 build/default/production/dsEserial.o
+                  0x0003db         0x63 build/default/debug/dsEserial.o
  .debug_pubnames
-                  0x00043e         0xb2 build/default/production/dsUART.o
+                  0x00043e         0xb2 build/default/debug/dsUART.o
  .debug_pubnames
-                  0x0004f0         0x5d build/default/production/dsStepper.o
+                  0x0004f0         0x5d build/default/debug/dsStepper.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -581,29 +629,29 @@ __FUID3
 .debug_aranges    0x000000        0x120
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/production/main.o
+                  0x000000         0x18 build/default/debug/main.o
  .debug_aranges
-                  0x000018         0x18 build/default/production/remappable.o
+                  0x000018         0x18 build/default/debug/remappable.o
  .debug_aranges
-                  0x000030         0x18 build/default/production/dsPWM.o
+                  0x000030         0x18 build/default/debug/dsPWM.o
  .debug_aranges
-                  0x000048         0x18 build/default/production/dsEInt.o
+                  0x000048         0x18 build/default/debug/dsEInt.o
  .debug_aranges
-                  0x000060         0x18 build/default/production/dsSPI.o
+                  0x000060         0x18 build/default/debug/dsSPI.o
  .debug_aranges
-                  0x000078         0x18 build/default/production/dsTimers.o
+                  0x000078         0x18 build/default/debug/dsTimers.o
  .debug_aranges
-                  0x000090         0x18 build/default/production/_ext/772281530/encoding.o
+                  0x000090         0x18 build/default/debug/_ext/772281530/encoding.o
  .debug_aranges
-                  0x0000a8         0x18 build/default/production/dsOscillator.o
+                  0x0000a8         0x18 build/default/debug/dsOscillator.o
  .debug_aranges
-                  0x0000c0         0x18 build/default/production/circular_buffer.o
+                  0x0000c0         0x18 build/default/debug/circular_buffer.o
  .debug_aranges
-                  0x0000d8         0x18 build/default/production/dsEserial.o
+                  0x0000d8         0x18 build/default/debug/dsEserial.o
  .debug_aranges
-                  0x0000f0         0x18 build/default/production/dsUART.o
+                  0x0000f0         0x18 build/default/debug/dsUART.o
  .debug_aranges
-                  0x000108         0x18 build/default/production/dsStepper.o
+                  0x000108         0x18 build/default/debug/dsStepper.o
 
 .ivt              0x000004         0xfc
                   0x000004          0x4 LONG 0x29e DEFINED (__ReservedTrap0)?ABSOLUTE (__ReservedTrap0):ABSOLUTE (__DefaultInterrupt)
@@ -622,7 +670,7 @@ __FUID3
                   0x00001e          0x4 LONG 0x29e DEFINED (__IC2Interrupt)?ABSOLUTE (__IC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000020          0x4 LONG 0x29e DEFINED (__OC2Interrupt)?ABSOLUTE (__OC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000022          0x4 LONG 0x29e DEFINED (__T2Interrupt)?ABSOLUTE (__T2Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x000024          0x4 LONG 0x9fc DEFINED (__T3Interrupt)?ABSOLUTE (__T3Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000024          0x4 LONG 0xeb8 DEFINED (__T3Interrupt)?ABSOLUTE (__T3Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000026          0x4 LONG 0x29e DEFINED (__SPI1ErrInterrupt)?ABSOLUTE (__SPI1ErrInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000028          0x4 LONG 0x29e DEFINED (__SPI1Interrupt)?ABSOLUTE (__SPI1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00002a          0x4 LONG 0x29e DEFINED (__U1RXInterrupt)?ABSOLUTE (__U1RXInterrupt):ABSOLUTE (__DefaultInterrupt)
@@ -750,7 +798,7 @@ __FUID3
                   0x00011e          0x4 LONG 0x29e DEFINED (__AltIC2Interrupt)?ABSOLUTE (__AltIC2Interrupt):DEFINED (__IC2Interrupt)?ABSOLUTE (__IC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000120          0x4 LONG 0x29e DEFINED (__AltOC2Interrupt)?ABSOLUTE (__AltOC2Interrupt):DEFINED (__OC2Interrupt)?ABSOLUTE (__OC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000122          0x4 LONG 0x29e DEFINED (__AltT2Interrupt)?ABSOLUTE (__AltT2Interrupt):DEFINED (__T2Interrupt)?ABSOLUTE (__T2Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x000124          0x4 LONG 0x9fc DEFINED (__AltT3Interrupt)?ABSOLUTE (__AltT3Interrupt):DEFINED (__T3Interrupt)?ABSOLUTE (__T3Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000124          0x4 LONG 0xeb8 DEFINED (__AltT3Interrupt)?ABSOLUTE (__AltT3Interrupt):DEFINED (__T3Interrupt)?ABSOLUTE (__T3Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000126          0x4 LONG 0x29e DEFINED (__AltSPI1ErrInterrupt)?ABSOLUTE (__AltSPI1ErrInterrupt):DEFINED (__SPI1ErrInterrupt)?ABSOLUTE (__SPI1ErrInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000128          0x4 LONG 0x29e DEFINED (__AltSPI1Interrupt)?ABSOLUTE (__AltSPI1Interrupt):DEFINED (__SPI1Interrupt)?ABSOLUTE (__SPI1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00012a          0x4 LONG 0x29e DEFINED (__AltU1RXInterrupt)?ABSOLUTE (__AltU1RXInterrupt):DEFINED (__U1RXInterrupt)?ABSOLUTE (__U1RXInterrupt):ABSOLUTE (__DefaultInterrupt)
@@ -1830,7 +1878,7 @@ LOAD c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30
 LOAD c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a
 LOAD c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a
 END GROUP
-OUTPUT(dist/default/production/dsTest.X.production.elf elf32-pic30)
+OUTPUT(dist/default/debug/dsTest.X.debug.elf elf32-pic30)
 LOAD jump_table
 LOAD default_isr
 LOAD data_init
@@ -1838,56 +1886,56 @@ LOAD data_init
 .debug_pubtypes
                   0x000120        0xb6a
  .debug_pubtypes
-                  0x000120        0x195 build/default/production/main.o
+                  0x000120        0x195 build/default/debug/main.o
  .debug_pubtypes
-                  0x0002b5        0x39a build/default/production/remappable.o
+                  0x0002b5        0x39a build/default/debug/remappable.o
  .debug_pubtypes
-                  0x00064f         0x93 build/default/production/dsPWM.o
+                  0x00064f         0x93 build/default/debug/dsPWM.o
  .debug_pubtypes
-                  0x0006e2         0x9d build/default/production/dsEInt.o
+                  0x0006e2         0x9d build/default/debug/dsEInt.o
  .debug_pubtypes
-                  0x00077f         0xbb build/default/production/dsSPI.o
+                  0x00077f         0xbb build/default/debug/dsSPI.o
  .debug_pubtypes
-                  0x00083a        0x17a build/default/production/dsTimers.o
+                  0x00083a        0x17a build/default/debug/dsTimers.o
  .debug_pubtypes
-                  0x0009b4         0x29 build/default/production/_ext/772281530/encoding.o
+                  0x0009b4         0x29 build/default/debug/_ext/772281530/encoding.o
  .debug_pubtypes
-                  0x0009dd         0xcb build/default/production/dsOscillator.o
+                  0x0009dd         0xcb build/default/debug/dsOscillator.o
  .debug_pubtypes
-                  0x000aa8         0x4b build/default/production/circular_buffer.o
+                  0x000aa8         0x4b build/default/debug/circular_buffer.o
  .debug_pubtypes
-                  0x000af3         0x56 build/default/production/dsEserial.o
+                  0x000af3         0x56 build/default/debug/dsEserial.o
  .debug_pubtypes
-                  0x000b49         0xc2 build/default/production/dsUART.o
+                  0x000b49         0xc2 build/default/debug/dsUART.o
  .debug_pubtypes
-                  0x000c0b         0x7f build/default/production/dsStepper.o
+                  0x000c0b         0x7f build/default/debug/dsStepper.o
 
 __c30_signature
-                  0x000c8a         0xa8
+                  0x000c8a         0xae
  __c30_signature
-                  0x000c8a          0x6 build/default/production/main.o
+                  0x000c8a          0x6 build/default/debug/main.o
  __c30_signature
-                  0x000c90          0x6 build/default/production/remappable.o
+                  0x000c90          0x6 build/default/debug/remappable.o
  __c30_signature
-                  0x000c96          0x6 build/default/production/dsPWM.o
+                  0x000c96          0x6 build/default/debug/dsPWM.o
  __c30_signature
-                  0x000c9c          0x6 build/default/production/dsEInt.o
+                  0x000c9c          0x6 build/default/debug/dsEInt.o
  __c30_signature
-                  0x000ca2          0x6 build/default/production/dsSPI.o
+                  0x000ca2          0x6 build/default/debug/dsSPI.o
  __c30_signature
-                  0x000ca8          0x6 build/default/production/dsTimers.o
+                  0x000ca8          0x6 build/default/debug/dsTimers.o
  __c30_signature
-                  0x000cae          0x6 build/default/production/_ext/772281530/encoding.o
+                  0x000cae          0x6 build/default/debug/_ext/772281530/encoding.o
  __c30_signature
-                  0x000cb4          0x6 build/default/production/dsOscillator.o
+                  0x000cb4          0x6 build/default/debug/dsOscillator.o
  __c30_signature
-                  0x000cba          0x6 build/default/production/circular_buffer.o
+                  0x000cba          0x6 build/default/debug/circular_buffer.o
  __c30_signature
-                  0x000cc0          0x6 build/default/production/dsEserial.o
+                  0x000cc0          0x6 build/default/debug/dsEserial.o
  __c30_signature
-                  0x000cc6          0x6 build/default/production/dsUART.o
+                  0x000cc6          0x6 build/default/debug/dsUART.o
  __c30_signature
-                  0x000ccc          0x6 build/default/production/dsStepper.o
+                  0x000ccc          0x6 build/default/debug/dsStepper.o
  __c30_signature
                   0x000cd2          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
@@ -1905,128 +1953,130 @@ __c30_signature
  __c30_signature
                   0x000cfc          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatsisf.eo)
  __c30_signature
-                  0x000d02          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fpack.eo)
+                  0x000d02          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatunsisf.eo)
  __c30_signature
-                  0x000d08          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(funpack.eo)
+                  0x000d08          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fpack.eo)
  __c30_signature
-                  0x000d0e          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(funpack2.eo)
+                  0x000d0e          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(funpack.eo)
  __c30_signature
-                  0x000d14          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(futil.eo)
+                  0x000d14          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(funpack2.eo)
  __c30_signature
-                  0x000d1a          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
+                  0x000d1a          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(futil.eo)
  __c30_signature
-                  0x000d20          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fcompare.eo)
+                  0x000d20          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
  __c30_signature
-                  0x000d26          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatdisf.eo)
+                  0x000d26          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fcompare.eo)
  __c30_signature
-                  0x000d2c          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
+                  0x000d2c          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatdisf.eo)
+ __c30_signature
+                  0x000d32          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
 
-.nbss               0x0800          0xe
- .nbss              0x0800          0xa build/default/production/dsEserial.o
- .nbss              0x080a          0x2 build/default/production/main.o
- .nbss              0x080c          0x2 build/default/production/dsStepper.o
+.nbss               0x0850          0xe
+ .nbss              0x0850          0xa build/default/debug/dsEserial.o
+ .nbss              0x085a          0x2 build/default/debug/main.o
+ .nbss              0x085c          0x2 build/default/debug/dsStepper.o
 
-.data               0x080e          0x8
- .data              0x080e          0x8 build/default/production/dsStepper.o
+.data               0x085e          0x8
+ .data              0x085e          0x8 build/default/debug/dsStepper.o
 
 .config_JTAGEN    0xf8000e          0x2
  .config_JTAGEN
-                  0xf8000e          0x2 build/default/production/main.o
+                  0xf8000e          0x2 build/default/debug/main.o
 
 .config_ALTI2C    0xf8000c          0x2
  .config_ALTI2C
-                  0xf8000c          0x2 build/default/production/main.o
+                  0xf8000c          0x2 build/default/debug/main.o
 
 .config_FWDTEN    0xf8000a          0x2
  .config_FWDTEN
-                  0xf8000a          0x2 build/default/production/main.o
+                  0xf8000a          0x2 build/default/debug/main.o
 
 .config_FCKSM     0xf80008          0x2
- .config_FCKSM    0xf80008          0x2 build/default/production/main.o
+ .config_FCKSM    0xf80008          0x2 build/default/debug/main.o
 
 .config_IESO      0xf80006          0x2
- .config_IESO     0xf80006          0x2 build/default/production/main.o
+ .config_IESO     0xf80006          0x2 build/default/debug/main.o
 
 .config_GSS       0xf80004          0x2
- .config_GSS      0xf80004          0x2 build/default/production/main.o
+ .config_GSS      0xf80004          0x2 build/default/debug/main.o
 
 .config_RSS       0xf80002          0x2
- .config_RSS      0xf80002          0x2 build/default/production/main.o
+ .config_RSS      0xf80002          0x2 build/default/debug/main.o
 
 .config_RBS       0xf80000          0x2
- .config_RBS      0xf80000          0x2 build/default/production/main.o
+ .config_RBS      0xf80000          0x2 build/default/debug/main.o
 
-.text             0x0005f4       0x166a
- .text            0x0005f4        0x528 build/default/production/main.o
-                  0x0005f4                  _stop_func
-                  0x0005fc                  _main
-                  0x0009fc                  __T3Interrupt
-                  0x000a20                  _enable_interrupts
-                  0x000a70                  _disable_interrupts
-                  0x000a80                  _ADC_init
-                  0x000adc                  _read_adc_ch0
-                  0x000af2                  _set_value_motor
- .text            0x000b1c        0x4f4 build/default/production/remappable.o
-                  0x000b1c                  _set_rpp_output
-                  0x000f7e                  _set_rpp_input
- .text            0x001010        0x250 build/default/production/dsSPI.o
-                  0x001010                  _initialize_SPI1
-                  0x0010f4                  _spi1_send_get_data
-                  0x001168                  _espi1_master_receive
-                  0x0011e4                  _espi1_master_send
- .text            0x001260        0x1e2 build/default/production/dsTimers.o
-                  0x001260                  _initialize_timer1
-                  0x001288                  _initialize_timer2
-                  0x0012ae                  _initialize_timer3
-                  0x0012d4                  _set_timer
-                  0x00131a                  _timer_up
-                  0x001388                  _init_timer_interrupt
-                  0x001416                  _clear_timer_interrupt
- .text            0x001442        0x17c build/default/production/dsUART.o
-                  0x001442                  _initialize_UART1
-                  0x00147a                  _UART1_reset
-                  0x001494                  _UART1_send_byte
-                  0x0014ac                  _UART1_receive_byte
-                  0x001500                  _initialize_UART2
-                  0x001538                  _UART2_reset
-                  0x001552                  _UART2_send_byte
-                  0x00156a                  _UART2_receive_byte
- .text            0x0015be        0x174 build/default/production/dsEserial.o
-                  0x0015be                  _eserial1_initialize
-                  0x001612                  _eserial1_send
-                  0x00163c                  _eserial1_receive
-                  0x00171c                  _eserial1_stop
- .text            0x001732        0x126 build/default/production/dsPWM.o
-                  0x001732                  _initialize_PWM1
-                  0x0017fa                  _PWM1_set_value
-                  0x001806                  _PWM1_change_output
-                  0x00182c                  _PWM1_set_output
-                  0x001842                  _PWM1_shut_output
- .text            0x001858        0x116 build/default/production/dsOscillator.o
-                  0x001858                  _initialize_oscillator
-                  0x001918                  _clock_fail
-                  0x00193c                  _enable_secondary_osc
-                  0x001954                  _switch_oscillator
- .text            0x00196e        0x106 build/default/production/circular_buffer.o
-                  0x00196e                  _buffer_count
-                  0x00197a                  _buffer_space
-                  0x00198a                  _buffer_empty
-                  0x0019a0                  _buffer_full
-                  0x0019ba                  _buffer_push
-                  0x001a08                  _buffer_pop
-                  0x001a42                  _buffer_clear
-                  0x001a50                  _buffer_peek
- .text            0x001a74         0xf2 build/default/production/dsEInt.o
-                  0x001a74                  _initialize_external_interrupt
-                  0x001b00                  _external_interrupt_ocurred
- .text            0x001b66         0x80 build/default/production/_ext/772281530/encoding.o
-                  0x001b66                  _encode_data
-                  0x001ba0                  _decode_data
- .text            0x001be6         0x78 build/default/production/dsStepper.o
-                  0x001be6                  _stepper_setup
-                  0x001c00                  _step_forward
-                  0x001c28                  _step_backward
-                  0x001c50                  _stepper_shut_down
+.text             0x0005f8       0x162e
+ .text            0x0005f8        0x4f4 build/default/debug/remappable.o
+                  0x0005f8                  _set_rpp_output
+                  0x000a5a                  _set_rpp_input
+ .text            0x000aec        0x4ec build/default/debug/main.o
+                  0x000aec                  _stop_func
+                  0x000af4                  _main
+                  0x000eb8                  __T3Interrupt
+                  0x000edc                  _enable_interrupts
+                  0x000f2c                  _disable_interrupts
+                  0x000f3c                  _ADC_init
+                  0x000f98                  _read_adc_ch0
+                  0x000fae                  _set_value_motor
+ .text            0x000fd8        0x250 build/default/debug/dsSPI.o
+                  0x000fd8                  _initialize_SPI1
+                  0x0010bc                  _spi1_send_get_data
+                  0x001130                  _espi1_master_receive
+                  0x0011ac                  _espi1_master_send
+ .text            0x001228        0x1e2 build/default/debug/dsTimers.o
+                  0x001228                  _initialize_timer1
+                  0x001250                  _initialize_timer2
+                  0x001276                  _initialize_timer3
+                  0x00129c                  _set_timer
+                  0x0012e2                  _timer_up
+                  0x001350                  _init_timer_interrupt
+                  0x0013de                  _clear_timer_interrupt
+ .text            0x00140a        0x17c build/default/debug/dsUART.o
+                  0x00140a                  _initialize_UART1
+                  0x001442                  _UART1_reset
+                  0x00145c                  _UART1_send_byte
+                  0x001474                  _UART1_receive_byte
+                  0x0014c8                  _initialize_UART2
+                  0x001500                  _UART2_reset
+                  0x00151a                  _UART2_send_byte
+                  0x001532                  _UART2_receive_byte
+ .text            0x001586        0x174 build/default/debug/dsEserial.o
+                  0x001586                  _eserial1_initialize
+                  0x0015da                  _eserial1_send
+                  0x001604                  _eserial1_receive
+                  0x0016e4                  _eserial1_stop
+ .text            0x0016fa        0x126 build/default/debug/dsPWM.o
+                  0x0016fa                  _initialize_PWM1
+                  0x0017c2                  _PWM1_set_value
+                  0x0017ce                  _PWM1_change_output
+                  0x0017f4                  _PWM1_set_output
+                  0x00180a                  _PWM1_shut_output
+ .text            0x001820        0x116 build/default/debug/dsOscillator.o
+                  0x001820                  _initialize_oscillator
+                  0x0018e0                  _clock_fail
+                  0x001904                  _enable_secondary_osc
+                  0x00191c                  _switch_oscillator
+ .text            0x001936        0x106 build/default/debug/circular_buffer.o
+                  0x001936                  _buffer_count
+                  0x001942                  _buffer_space
+                  0x001952                  _buffer_empty
+                  0x001968                  _buffer_full
+                  0x001982                  _buffer_push
+                  0x0019d0                  _buffer_pop
+                  0x001a0a                  _buffer_clear
+                  0x001a18                  _buffer_peek
+ .text            0x001a3c         0xf2 build/default/debug/dsEInt.o
+                  0x001a3c                  _initialize_external_interrupt
+                  0x001ac8                  _external_interrupt_ocurred
+ .text            0x001b2e         0x80 build/default/debug/_ext/772281530/encoding.o
+                  0x001b2e                  _encode_data
+                  0x001b68                  _decode_data
+ .text            0x001bae         0x78 build/default/debug/dsStepper.o
+                  0x001bae                  _stepper_setup
+                  0x001bc8                  _step_forward
+                  0x001bf0                  _step_backward
+                  0x001c18                  _stepper_shut_down
 
-.dinit            0x001c5e         0x20
- .dinit           0x001c5e         0x20 data_init
+.dinit            0x001c26         0x20
+ .dinit           0x001c26         0x20 data_init

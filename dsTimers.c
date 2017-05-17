@@ -1,9 +1,8 @@
 #include "dsTimers.h"
 
 void initialize_timer1(uint16_t T1CON_reg, uint16_t PR_value)
-{
+{     
     T1CONbits.TON = 0;
-    
     if (T1CON_reg & TMR1_TGATE)
         T1CON = T1CON_reg & 0xFFFD;
     else
@@ -12,34 +11,31 @@ void initialize_timer1(uint16_t T1CON_reg, uint16_t PR_value)
     PR1 = PR_value;
     TMR1 = 0x00;
     IFS0bits.T1IF = 0;
-    
 }
 
 
 void initialize_timer2(uint16_t T2CON_reg, uint16_t PR_value)
 {
     T2CONbits.TON = 0;
-    
     if (T2CON_reg & TMR2_TGATE)
         T2CON = T2CON_reg & 0xFFFD;
     else
         T2CON = T2CON_reg;
     
     PR2 = PR_value;
-    TMR2 = 0x00;
+    TMR2 = 0x00;   
 }
 
 void initialize_timer3(uint16_t T3CON_reg, uint16_t PR_value)
 {
     T3CONbits.TON = 0;
-    
     if (T3CON_reg & TMR3_TGATE)
         T3CON = T3CON_reg & 0xFFFD;
     else
         T3CON = T3CON_reg;
     
     PR3 = PR_value;
-    TMR3 = 0x00;
+    TMR3 = 0x00;   
 }
 
 void set_timer(timer timer_sel, uint16_t value)
